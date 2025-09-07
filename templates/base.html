@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     {% if gebra_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/' + gebra_css + '.css') }}" />
-    <script src="{{ url_for('static', filename='js/plotly-latest.min.js') }}"></script>
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
     {% elif geometry_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/' + geometry_css + '.css') }}" />
     <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
