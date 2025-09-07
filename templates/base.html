@@ -13,7 +13,7 @@
     <script src="{{ url_for('static', filename='js/plotly-latest.min.js') }}"></script>
     {% elif geometry_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/' + geometry_css + '.css') }}" />
-    <script src="{{ url_for('static', filename='js/plotly-latest.min.js') }}"></script>
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
     {% elif chat_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/' + chat_css + '.css') }}" />
     {% elif account_css %}
