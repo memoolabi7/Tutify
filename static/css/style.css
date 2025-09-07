@@ -1,0 +1,75 @@
+article {
+    text-align: center;
+    padding: 10px;
+    transition: all .2s ease-in;
+    border-radius: 20px;
+}
+
+article form label, article form button {
+    margin: 10px;
+}
+
+a {
+    display: contents;
+    text-decoration: none;
+}
+
+a article img {
+    width: 22%;
+}
+
+.article-p, .article-title {
+    margin-top: 30px;
+    color: black;
+}
+
+.article:hover {
+    scale: 1.1;
+    border: 3px solid rgb(77, 110, 255);
+}
+
+form {
+    padding-top: 20px;
+}
+
+button {
+    border-radius: 20px;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.intro {
+    animation: intro 0.7s ease;
+}
+
+#owner {
+    animation: owner 1.5s;
+}
+
+@keyframes intro {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    50% {
+        transform: translateY(3px);
+    }
+    100% {
+        opacity: 100;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes owner {
+    0% {
+        opacity: 0;
+    }
+    30% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
+}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="text-center mt-5">
+    <img src="{{ url_for('static', filename='img/logo.svg') }}" style="margin: 20px 0px;" alt="Tutify"
+        class="intro col-md-4 p-4">
+    <h3 style="margin-top:-10px;">:من قبل فريق Tutify تم إعداد مشروع</h3><br>
+    <ul class="list-group profile-details rounded-4" style="margin: 1% 12%;">
+        <li id="owner" class="list-group-item">
+            <img src="/static/img/IMG_20221104(1,1).png" style="width: 180px; border-radius: 50%; padding: 20px;">
+            <h4 class="mb-3 pb-3">محمد موفق العلبي
+                <!-- <img src="/static/img/developer.svg"
+                    style="width:40px; padding: 3px; border: 3px solid #97c1ff; border-radius: 50%; filter:hue-rotate(0deg);"> -->
+            </h4>
+        </li>
+    </ul>
+</div>
+{% endblock %}

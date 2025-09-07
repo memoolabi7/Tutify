@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block body %}
+<article class="container mb-5" style="margin-top: 100px; width: 90%;">
+  <h1>Your Results</h1>
+
+  <div class="mx-lg-5" id="bar-chart"></div>
+  <br>
+
+  <h2>Tips for Improvement</h2>
+  {% for operation, tip in tips.items() %}
+  <strong>{{ operation | capitalize }}:</strong> {{ tip }} <br>
+  {% endfor %}
+
+  <br>
+  <a href="/main"><button type="submit" class="btn btn-primary rounded-4 p-3 col-md-2 m-0" style="font-size: 20px;"
+      onclick="submitDifficulty()">Back to Start</button></a>
+</article>
+
+
+<script>
+  const graphJSON = JSON.parse('{{ graph_json|safe }}');
+  Plotly.newPlot("bar-chart", graphJSON.data, graphJSON.layout);
+</script>
+{% endblock %}

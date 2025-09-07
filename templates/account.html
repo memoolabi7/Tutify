@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="profile-box p-lg-5 mt-sm-5 d-flex justify-content-center flex-wrap-reverse flex-md-nowrap flex-sm-wrap-reverse">
+    <!-- قائمة الدردشات -->
+    <div class="chat-history rounded-4">
+        <h2>Chat History</h2>
+        <ul id="chat-list">
+            <!-- يتم ملء قائمة الدردشات ديناميكيًا -->
+        </ul>
+    </div>
+
+    <!-- معلومات الملف الشخصي -->
+    <ul class="list-group profile-details rounded-4">
+        <li class="list-group-item">
+            <img src="/static/img/user.svg" alt="Profile Picture">
+        </li>
+        <li class="list-group-item">
+            <h2 id="user-name">Memo Olabi</h2>
+        </li>
+        <li class="list-group-item">
+            <p id="user-email">E-mail:&ensp;memo@example.com</p>
+        </li>
+        <li class="list-group-item">
+            <p id="user-age">Age:&ensp;22</p>
+        </li>
+        <li class="list-group-item">
+            <p id="user-job">Job:&ensp;Hardware & Software Engineer</p>
+        </li>
+    </ul>
+</div>
+
+<!-- <script>
+    // download chat history from server
+    async function loadChatHistory() {
+        const response = await fetch('/account/get_chat_history');
+        const data = await response.json();
+
+        const chatList = document.getElementById('chat-list');
+        data.chats.forEach(chat => {
+            const li = document.createElement('li');
+            li.textContent = `Chat #${chat.id}`;
+            li.style.padding = '10px';
+            li.style.marginBottom = '10px';
+            li.style.cursor = 'pointer';
+            li.style.background = '#fff';
+            li.style.border = '1px solid #ddd';
+            li.style.borderRadius = '5px';
+            li.addEventListener('click', () => {
+                // go to chat page for the specific history
+                window.location.href = `/chat/${chat.id}`;
+            });
+            chatList.appendChild(li);
+        });
+    }
+
+    // استدعاء الوظيفة عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', loadChatHistory);
+</script> -->
+{% endblock %}

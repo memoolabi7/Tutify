@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="shortcut icon" type="x-icon" href="/static/img/icon.svg">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    {% if gebra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/' + gebra_css + '.css') }}" />
+    <script src="{{ url_for('static', filename='js/plotly-latest.min.js') }}"></script>
+    {% elif geometry_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/' + geometry_css + '.css') }}" />
+    <script src="{{ url_for('static', filename='js/plotly-latest.min.js') }}"></script>
+    {% elif chat_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/' + chat_css + '.css') }}" />
+    {% elif account_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/' + account_css + '.css') }}" />
+    {% endif %}
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+        <div class="container">
+            <!-- left side -->
+            <!-- logo -->
+            <a class="navbar-brand" href="/">
+                <div class="frame" style="width: 120px; background-color: rgb(242, 242, 242); border-radius: 15px;">
+                    <img src="/static/img/logo.svg" style="padding: 5px; width: 120px; color: white" alt="Tree" />
+                </div>
+            </a>
+            <!-- right side -->
+            <!-- notifications -->
+            <div class="dropdown text-end">
+                <button class="btn btn-primary dropdown-toggle rounded-5" type="button" id="dropdownMenuButton"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <img class="icon" style="width: 35px;" src="/static/img/notifications.svg" />
+                    <!-- notification badge -->
+                    <span class="badge text-bg-danger rounded-pill" id="notification-badge"
+                        style="margin-left: -24px;">3</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="width: 300px;">
+                    <li><a class="dropdown-item" id="random-test"
+                            style="margin: 4px 0px; display: flex; flex-wrap: wrap; flex-direction: row-reverse;"
+                            href="#" onclick="location.href='{{subject}}'">
+                            <h4><img src="/static/img/test.svg"
+                                    style="width: 12%; margin-right: 10px; filter: saturate(0);" />اختبر نفسك</h4>
+                            قيّم نفسك بأسئلة من مواد عشوائية
+                        </a></li>
+                    <hr style="margin: 0;">
+                    <li><a class="dropdown-item"
+                            style="margin: 4px 0px; display: flex; flex-wrap: wrap; flex-direction: row-reverse;"
+                            href="/account">
+                            <h4><img src="/static/img/account.svg"
+                                    style="width: 12%; margin-right: 10px; filter: saturate(0);" />طوّر حسابك</h4>لا
+                            تنسى وضع آخر تحديثات لحسابك
+                        </a></li>
+                    <hr style="margin: 0;">
+                    <li><a class="dropdown-item"
+                            style="margin: 4px 0px; display: flex; flex-wrap: wrap; flex-direction: row-reverse;"
+                            href="/chat">
+                            <h4><img src="/static/img/chat.svg"
+                                    style="width: 12%; margin-right: 10px; filter: saturate(0);" />Tutify استشِر</h4>
+                            قم بطلب الدعم من مرشدك الدراسي
+                        </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block body %}
+    {% endblock %}
+    <script>
+        document.getElementById("dropdownMenuButton").addEventListener("click", function () {
+            const badge = document.getElementById("notification-badge");
+
+            if (badge) {
+                badge.style.display = "none";
+            }
+        });        
+    </script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+
+</html>

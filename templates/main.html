@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-3 col-lg-2 p-1 text-center mt-5 bg-light rounded-5">
+            <h1>الأقسام</h1>
+        </div>
+    </div>
+    <div class="row m-4 d-flex justify-content-center">
+        <a href="/gebra">
+            <article class="article col-md-4">
+                <img class="icon" src="/static/img/gebra.svg" />
+                <h3 class="article-title">جبر</h3>
+                <p class="article-p">Gebra quiz test</p>
+            </article>
+        </a>
+
+        <a href="/geometry">
+            <article class="article col-md-4">
+                <img class="icon" src="/static/img/geometry.svg" />
+                <h3 class="article-title">هندسة</h3>
+                <p class="article-p">Geometry quiz test</p>
+            </article>
+        </a>
+
+        <a href="/pycode">
+            <article class="article col-md-4">
+                <img class="icon" src="/static/img/python.svg" />
+                <h3 class="article-title">بايثون</h3>
+                <p class="article-p">Python quiz test</p>
+            </article>
+        </a>
+
+        <a href="/chat">
+            <article class="article col-md-4">
+                <img class="icon" src="/static/img/chat.svg" />
+                <h3 class="article-title">الدردشة</h3>
+                <p class="article-p">Chat with Tutify Assistant</p>
+            </article>
+        </a>
+
+        <a href="/account">
+            <article class="article col-md-4">
+                <img class="icon" src="/static/img/account.svg" />
+                <h3 class="article-title">الحساب الشخصي</h3>
+                <p class="article-p">See your info</p>
+            </article>
+        </a>
+
+        <a href="/about">
+            <article class="article col-md-4">
+                <img class="icon" src="/static/img/about.svg" />
+                <h3 class="article-title">حول</h3>
+                <p class="article-p">About us</p>
+            </article>
+        </a>
+    </div>
+</div>
+{% endblock %}

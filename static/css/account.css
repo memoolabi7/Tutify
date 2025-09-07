@@ -1,0 +1,53 @@
+.profile-box {
+    height: 70vh;
+    margin-top: 600px;
+}
+
+.chat-history {
+    width: 70%;
+    height: 100%;
+    margin: 15px;
+    background: #f4f4f4;
+    overflow-y: auto;
+    border-right: 1px solid #ddd;
+    padding: 20px;
+}
+
+.chat-history ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.chat-history li {
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.chat-history li:hover {
+    background: #eaeaea;
+}
+
+.profile-details {
+    margin: 15px;
+    width: 70%;
+    text-align: center;
+}
+
+.profile-details img {
+    width: 150px;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.profile-details h1 {
+    margin: 10px 0;
+}
+
+.profile-details p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
