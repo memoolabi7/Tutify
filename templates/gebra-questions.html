@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block body %}
+<article class="container mb-5" style="margin-top: 100px; width: 90%;">
+    <h1>Answer the Questions</h1>
+    <form id="answersForm" class="container">
+        {% for i, question in enumerate(questions) %}
+        <div class="mb-4">
+            <p class="mt-3"><strong>Question {{ i + 1 }}:</strong> &ensp; {{ question["question"] }}</p>
+            <input type="number" class="form-control" name="answer" required placeholder="input the answer">
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-success rounded-3 p-2 col-md-1 m-0" style="font-size: 17px;" onclick="submitAnswers()">Submit</button>
+    </form>
+</article>
+<script>
+    document.getElementById("answersForm").onsubmit = async (e) => {
+        e.preventDefault();
+        const answers = Array.from(document.querySelectorAll("input[name='answer']")).map(input => input.value);
+        await fetch("{{ url_for('gebra.submit_answers') }}", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ answers })
+        });
+        window.location.href = "{{ url_for('gebra.results') }}";
+    };
+</script>
+{% endblock %}

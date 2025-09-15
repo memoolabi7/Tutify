@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block body %}
+<article class="container mb-5" style="margin-top: 100px; width: 90%;">
+    <h1>Welcome to the Math Quiz!</h1>
+    <form id="difficultyForm">
+        <div class="container-form1">
+            <label for="difficulty">Choose difficulty:</label>
+            <select class="form-select rounded" id="difficulty" name="difficulty" style="width: 40%;">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
+        <div class="container-form2">
+            <label for="num_questions">Number of Questions:</label>
+            <input type="number" id="num_questions" class="form-control" min="1" max="20" value="5" style="width: 40%;"
+                required>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary rounded-4 p-3 col-md-2 m-0" style="font-size: 20px;"
+            onclick="submitDifficulty()">start</button>
+    </form>
+</article>
+<script>
+    document.getElementById("difficultyForm").onsubmit = async (e) => {
+        e.preventDefault();
+        const difficulty = document.getElementById("difficulty").value;
+        const num_questions = document.getElementById("num_questions").value;
+        await fetch("/gebra/set-difficulty", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ difficulty, num_questions })
+        });
+        window.location.href = "/gebra/questions";
+    };
+</script>
+{% endblock %}

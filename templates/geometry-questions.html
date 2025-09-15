@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block body %}
+<article class="container mb-5" style="margin-top: 100px; width: 90%; text-align: start;">
+  <h1 class="text-center mb-4">{{ title }}</h1>
+  <form id="questionsForm" class="container">
+    {% for i, question in enumerate(questions) %}
+    <div class="mb-4">
+      <p><strong>Question {{ i + 1 }}:</strong> {{ question.question }}</p>
+      <input type="number" class="form-control" name="answer" required placeholder="input the answer">
+    </div>
+    {% endfor %}
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn btn-success rounded-3 p-2 col-md-1 m-0" style="font-size: 17px;" onclick="submitAnswers()">submit</button>
+    </div>
+  </form>
+</article>
+
+<script>
+  function submitAnswers() {
+    const answers = Array.from(document.querySelectorAll('input[name="answer"]')).map(input => input.value);
+
+    fetch('/geometry/submit-answers', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ answers })
+    }).then(response => {
+      if (response.ok) {
+        window.location.href = '/geometry/results';
+      }
+    });
+  }
+</script>
+{% endblock %}

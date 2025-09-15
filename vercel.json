@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "builds": [
+        { "src": "gebra_api.py", "use": "@vercel/python" },
+        { "src": "geometry_api.py", "use": "@vercel/python" },
+        { "src": "chat_api.py", "use": "@vercel/python" },
+        { "src": "pycode_api.py", "use": "@vercel/python" },
+        { "src": "account_api.py", "use": "@vercel/python" },
+        { "src": "about_api.py", "use": "@vercel/python" }
+    ],
+    "routes": [
+        { "src": "/gebra/(.*)", "dest": "gebra_api.py" },
+        { "src": "/geometry/(.*)", "dest": "geometry_api.py" },
+        { "src": "/chat/(.*)", "dest": "chat_api.py" },
+        { "src": "/pycode/(.*)", "dest": "pycode_api.py" },
+        { "src": "/account/(.*)", "dest": "account_api.py" },
+        { "src": "/about/(.*)", "dest": "about_api.py" }
+    ]
+}

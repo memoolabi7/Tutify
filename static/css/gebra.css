@@ -1,0 +1,29 @@
+* {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+article {
+    width: 1500px;
+    margin: auto;
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.container-form1, .container-form2 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+mark {
+    background-color: cyan;
+    color: black;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

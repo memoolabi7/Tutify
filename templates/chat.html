@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container" style="margin-top: 100px; margin-bottom: 100px;">
+    <div class="chat-box">
+        <div id="chat-area">
+            <img src="/static/img/logo.svg" class="mb-2"
+                style="width: 40%; display: flex; margin: auto; filter: saturate(0) opacity(20%);" />
+            <!-- HERE WE SHOW THE MESSAGES -->
+        </div>
+        <div class="input mt-3">
+            <textarea id="user-message" class="form-control" placeholder="Message Tutify" rows="1"></textarea>
+            <button class="btn btn-primary" onclick="sendMessage()">
+                <img src="/static/img/send.svg" style="filter: brightness(100);" />
+            </button>
+        </div>        
+    </div>
+</div>
+
+<script>
+    const chatHistory = [];
+
+    async function sendMessage() {
+        const userMessage = document.getElementById('user-message').value;
+        if (!userMessage) return;
+
+        const chatArea = document.getElementById('chat-area');
+
+        chatArea.innerHTML += `
+            <div class="chat-message user-message">
+                <div class="icon-container">
+                    <img src="/static/img/user.svg" alt="User Icon">
+                </div>
+                <div class="message-container">
+                    ${userMessage}
+                </div>
+            </div>`;
+
+        chatHistory.push({ user: userMessage });
+
+        document.getElementById('user-message').value = '';
+
+        await sleep(1000);
+
+        const botTypingIndicator = document.createElement('div');
+        botTypingIndicator.className = 'chat-message system-message';
+        botTypingIndicator.innerHTML = `
+            <div class="icon-container">
+                <img src="/static/img/bot.svg" alt="System Icon">
+            </div>
+            <div class="message-container">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>`;
+        chatArea.appendChild(botTypingIndicator);
+
+        chatArea.scrollTop = chatArea.scrollHeight;
+
+        fetch('/chat/response', {
+            method: 'POST',
+            body: new URLSearchParams({
+                message: userMessage
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            botTypingIndicator.remove();
+            
+            chatArea.innerHTML += `
+            <div class="chat-message system-message">
+                <div class="icon-container">
+                    <img src="/static/img/bot.svg" alt="System Icon">
+                </div>
+                <div class="message-container">
+                    ${data.message}
+                </div>
+            </div>`;
+            
+            chatHistory.push({ bot: data.message });
+            
+            chatArea.scrollTop = chatArea.scrollHeight;
+        })
+        .catch(error => {
+            botTypingIndicator.remove();
+            chatArea.innerHTML += `
+                <div class="chat-message system-message">
+                    <div class="icon-container">
+                        <img src="/static/img/bot.svg" alt="System Icon">
+                    </div>
+                    <div class="message-container">
+                        Unable to load message!
+                        <br>
+                        Please make sure you are connected to the internet
+                        <br>
+                        And try using VPN
+                        <br>
+                        <br>
+                        !غير قادر على تحميل الرسالة
+                        <br>
+                        يرجى التأكد من الاتصال بالانترنت
+                        <br>
+                        VPN ومحاولة تشغيل
+                    </div>
+                </div>`; 
+        });
+    }
+
+    async function sleep(ms) {
+        await new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    document.getElementById('user-message').addEventListener('keydown', function (event) {
+        const textarea = document.getElementById('user-message');
+        if (event.key === 'Enter' && !event.shiftKey) { 
+            event.preventDefault(); 
+            sendMessage(); 
+        } else if (event.key === 'Enter' && event.shiftKey) {
+           
+            textarea.rows = textarea.rows + 1;
+        }
+    });
+
+    document.getElementById('user-message').addEventListener('input', function () {
+        const textarea = document.getElementById('user-message');
+        const lines = textarea.value.split('\n').length;
+        
+        if (lines < textarea.rows) {
+            textarea.rows = lines; 
+        }
+    });
+</script>
+
+
+
+{% endblock %}
